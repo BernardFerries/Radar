@@ -1,0 +1,6 @@
+<footer class="site-footer">
+  {{ radar.reglages.nom_site }} · Nouveau Cap ·
+  <a href="/mentions-legales/">Mentions légales</a> ·
+  Contact : {% include "partials/contact.njk" %}
+  <br>Dernière mise à jour le {{ radar.etatAu | isoDate | dateFr }}
+</footer>

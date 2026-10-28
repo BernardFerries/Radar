@@ -1,0 +1,9 @@
+{
+  "thematique": "mobilite",
+  "numero": 2,
+  "intitule": "Créer une piste cyclable",
+  "statut": "non-engagee",
+  "chronologie": [
+    { "date": "2026-07-02", "lieu": "conseil-municipal", "type": "fait", "texte": "Point inscrit à l'ordre du jour.", "lien": "https://example.org/pv" }
+  ]
+}

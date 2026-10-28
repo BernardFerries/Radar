@@ -1,0 +1,5 @@
+<a class="ligne" href="{{ p.url }}" data-statut="{{ p.statut.key or 'a-venir' }}" data-thematique="{{ p.thematiqueObj.slug }}">
+  <span class="n">{{ p.rang }}</span>
+  <span class="ligne-texte">{{ p.intitule }}{% if p.resume %}<small>{{ p.resume }}</small>{% endif %}</span>
+  {% set statut = p.statut %}{% include "partials/statut-badge.njk" %}
+</a>

@@ -1,0 +1,17 @@
+{
+  "name": "radar-escalquens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "test": "node --test \"lib/**/*.test.js\" \"test/**/*.test.js\""
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.7"
+  }
+}

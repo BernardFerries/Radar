@@ -1,0 +1,13 @@
+{
+  "thematique": "mobilite",
+  "numero": 1,
+  "intitule": "Aménager des places de parking",
+  "statut": "en-cours",
+  "source": "Profession de foi 2026",
+  "planning_budget": { "resume": "Budget prévu : 5 000 000 €", "lien": "documents/plannings-et-budgets.pdf" },
+  "chronologie": [
+    { "date": "2026-06-26", "lieu": "commission", "intervenant": "jlt", "type": "citation", "texte": "Pas de besoin." },
+    { "lieu": "presse", "type": "fait", "texte": "Événement ancien non daté." }
+  ],
+  "point_de_vue": { "texte": "**gras**", "date": "2026-09-20" }
+}

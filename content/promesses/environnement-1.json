@@ -1,0 +1,14 @@
+{
+  "thematique": "environnement",
+  "numero": 1,
+  "intitule": "Achever la rénovation énergétique des bâtiments communaux",
+  "statut": "en-cours",
+  "source": "Profession de foi 2026",
+  "chronologie": [
+    {
+      "lieu": "autre",
+      "type": "fait",
+      "texte": "Rénovation énergétique du local de la police municipale\nInstallation d’une pompe à chaleur dans les ateliers municipaux"
+    }
+  ]
+}

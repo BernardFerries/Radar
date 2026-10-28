@@ -1,0 +1,26 @@
+{
+  "thematique": "environnement",
+  "numero": 4,
+  "intitule": "Rénovation énergétique des écoles maternelles et primaires",
+  "statut": "non-engagee",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget non chiffré",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-06-26",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "citation",
+      "texte": "c'est dommage parce que c'est vrai que ça fait 45 ans qu'elles ont été construites et elles ne sont toujours pas climatisées. Nous allons lancer des études de maîtrise d'oeuvre très rapidement en tout cas avant la fin de l'année en essayant de faire du redéploiement de crédit. Enfin, ce n’est pas ce qui coûte le plus cher mais ça permettra de gagner du temps et après, ça sera les travaux.\nAlors, les travaux, on sait très bien, on avait fait un premier diagnostic il y a 2-3 ans, 4 ans. On peut installer des pompes à chaleur pour faire des climatisations réversibles. C'était déjà à l'époque estimé à 240 ou 50 000 euros de mémoire mais si on met ce type d'équipement sans renforcer l'isolation de l'enveloppe, ça ne sert à rien parce qu'en fait ça a été conçu avec des espèces de puits de lumière qui deviennent des puits de chaleur donc il faut faire une rénovation cohérente.\nC'est la raison pour laquelle on va demander à un architecte de regarder tout ça de près et puis de faire une estimation des travaux précise, mais il y en aura automatiquement pour 600 ou 700 000 euros, il ne faut pas se raconter d'histoire."
+    },
+    {
+      "date": "2026-06-26",
+      "lieu": "autre",
+      "type": "fait",
+      "texte": "Réponse à la question concernant la rénovation énergétique des écoles suite à la canicule de cet été."
+    }
+  ]
+}

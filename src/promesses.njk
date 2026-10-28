@@ -1,0 +1,35 @@
+---
+permalink: "promesses/index.html"
+---
+{% extends "layouts/base.njk" %}
+{% block title %}Les {{ radar.total }} promesses · {{ radar.reglages.nom_site }}{% endblock %}
+{% block ogtitle %}Les {{ radar.total }} promesses · {{ radar.reglages.nom_site }}{% endblock %}
+{% block content %}
+<div class="liste">
+  <h1>Les {{ radar.total }} promesses</h1>
+  <p class="lead">Toutes les promesses de la liste « Avec vous pour Escalquens », et où elles en sont.</p>
+
+  <div class="chips" role="group" aria-label="Filtrer par statut">
+    <button type="button" class="chip" data-filtre="statut" data-valeur="" aria-pressed="true" hidden>Tous les statuts</button>
+    {% for r in radar.repartition %}{% if r.count %}
+    <button type="button" class="chip" data-filtre="statut" data-valeur="{{ r.statut.key or 'a-venir' }}" aria-pressed="false" hidden>{{ r.statut.label }} · {{ r.count }}</button>
+    {% endif %}{% endfor %}
+  </div>
+  <div class="chips" role="group" aria-label="Filtrer par thématique">
+    <button type="button" class="chip" data-filtre="thematique" data-valeur="" aria-pressed="true" hidden>Toutes thématiques</button>
+    {% for t in radar.thematiques %}
+    <button type="button" class="chip" data-filtre="thematique" data-valeur="{{ t.slug }}" aria-pressed="false" hidden>{{ t.nom }} · {{ t.promesses.length }}</button>
+    {% endfor %}
+  </div>
+
+  <p data-vide hidden>Aucune promesse ne correspond à ces filtres.</p>
+
+  {% for t in radar.thematiques %}
+  <section class="groupe" data-groupe="{{ t.slug }}">
+    <div class="gh"><h2 class="gh-nom">{{ t.nom }}</h2><span>{% include "partials/compte-thematique.njk" %}</span></div>
+    {% for p in t.promesses %}{% include "partials/ligne-promesse.njk" %}{% endfor %}
+  </section>
+  {% endfor %}
+</div>
+<script src="/assets/js/filtres.js" defer></script>
+{% endblock %}

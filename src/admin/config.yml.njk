@@ -1,0 +1,155 @@
+---
+permalink: admin/config.yml
+eleventyExcludeFromCollections: true
+---
+{#- Every string goes through `dump | safe` (JSON quoting = valid YAML) so « », ":" and "#" never break the file. -#}
+{%- macro q(s) %}{{ s | dump | safe }}{% endmacro -%}
+{%- macro statutOptions() -%}
+{%- for s in catalogue.statuts %}
+        - { label: {{ q(s.label) }}, value: {{ q(s.key) }} }
+{%- endfor %}
+{%- endmacro -%}
+{#- `lien` is rendered as an href: only absolute http(s) URLs and site paths are accepted. -#}
+{%- set lienPattern = 'pattern: ["^(https?://|/)", "L\'adresse doit commencer par https:// (site externe) ou par / (document du site)."]' -%}
+{%- macro pointDeVue(label) %}
+      - label: {{ q(label) }}
+        name: "point_de_vue"
+        widget: "object"
+        required: false
+        collapsed: auto
+        hint: "Un commentaire signé de l'opposition, séparé des faits. Ne pas ajouter ce bloc s'il n'y en a pas."
+        fields:
+          - { label: "Texte", name: "texte", widget: "markdown", required: false, hint: "Le commentaire. Mise en forme simple (gras, liens)." }
+          {#- Required inside an optional object: Sveltia 0.253.1 only validates it once the block is added. #}
+          - { label: "Date", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: true, hint: "Date du commentaire, affichée dans la signature." }
+{%- endmacro -%}
+backend:
+  name: github
+  repo: {{ q(infra.github_repo) }}
+  branch: {{ q(infra.branche) }}
+  base_url: {{ q(infra.auth_url) }}
+
+publish_mode: simple
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+site_url: {{ q(infra.site_url) }}
+
+collections:
+  - name: "promesses"
+    label: "Promesses"
+    label_singular: "Promesse"
+    folder: "content/promesses"
+    format: json
+    extension: json
+    create: false
+    delete: false
+    identifier_field: "intitule"
+    summary: "{{ '{{fields.thematique}}-{{fields.numero}} · {{fields.intitule}}' }}"
+    fields:
+      - { label: "Thématique", name: "thematique", widget: "string", readonly: true, hint: "Non modifiable." }
+      - { label: "Numéro", name: "numero", widget: "number", value_type: "int", readonly: true, hint: "Non modifiable." }
+      - { label: "Intitulé", name: "intitule", widget: "string", hint: "La promesse, telle que formulée dans le programme." }
+      - label: "Statut"
+        name: "statut"
+        widget: "select"
+        required: false
+        hint: "Laisser vide pour afficher « Statut à venir ». Chaque statut hors « Non engagée » doit être justifié par la chronologie."
+        options:
+{{- statutOptions() }}
+      - { label: "Source", name: "source", widget: "string", required: false, hint: "D'où vient la promesse (ex. : Profession de foi 2026)." }
+      - label: "Planning et budget"
+        name: "planning_budget"
+        widget: "object"
+        required: false
+        collapsed: auto
+        hint: "Ce que la majorité a annoncé en calendrier et en coût. Laisser vide si rien n'est connu."
+        fields:
+          - { label: "Résumé", name: "resume", widget: "string", required: false, hint: "Une phrase (ex. : Budget non chiffré)." }
+          - { label: "Lien", name: "lien", widget: "string", required: false, {{ lienPattern | safe }}, hint: "Adresse du document, ex. /documents/plannings-et-budgets.pdf" }
+      - label: "Chronologie"
+        label_singular: "événement"
+        name: "chronologie"
+        widget: "list"
+        required: false
+        collapsed: auto
+        summary: "{{ '{{fields.date}} · {{fields.texte}}' }}"
+        hint: "Les faits datés qui justifient le statut. Un événement sans date s'affiche en dernier."
+        fields:
+          - { label: "Date", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Date de l'événement. Laisser vide si elle est inconnue." }
+          - label: "Lieu"
+            name: "lieu"
+            widget: "select"
+            hint: "Où cela s'est dit ou passé."
+            options:
+{%- for key, label in catalogue.lieux %}
+              - { label: {{ q(label) }}, value: {{ q(key) }} }
+{%- endfor %}
+          - { label: "Intervenant", name: "intervenant", widget: "relation", collection: "intervenants", value_field: "{{ '{{slug}}' }}", display_fields: ["nom"], search_fields: ["nom"], required: false, hint: "Qui parle. Laisser vide pour un fait sans intervenant." }
+          - label: "Type"
+            name: "type"
+            widget: "select"
+            hint: "citation = mots exacts de l'intervenant"
+            options:
+{%- for t in catalogue.types %}
+              - { label: {{ q(t | capitalize) }}, value: {{ q(t) }} }
+{%- endfor %}
+          - { label: "Texte", name: "texte", widget: "text", hint: "La citation exacte, ou le fait en une ou deux phrases." }
+          - { label: "Lien", name: "lien", widget: "string", required: false, {{ lienPattern | safe }}, hint: "Adresse de la source (procès-verbal, article…), ex. https://… Facultatif." }
+{{- pointDeVue("Point de vue de l'opposition") }}
+
+  - name: "thematiques"
+    label: "Thématiques"
+    label_singular: "Thématique"
+    folder: "content/thematiques"
+    format: json
+    extension: json
+    create: false
+    delete: false
+    identifier_field: "nom"
+    fields:
+      - { label: "Nom", name: "nom", widget: "string", readonly: true, hint: "Non modifiable." }
+{{- pointDeVue("Point de vue sur la thématique") }}
+
+  - name: "intervenants"
+    label: "Intervenants"
+    label_singular: "Intervenant"
+    folder: "content/intervenants"
+    format: json
+    extension: json
+    create: true
+    delete: false
+    identifier_field: "nom"
+    slug:
+      template: "{{ '{{fields.nom}}' }}"
+      editable: [create]
+    fields:
+      - { label: "Nom", name: "nom", widget: "string", hint: "Nom complet, tel qu'affiché sur le site." }
+      - { label: "Fonction", name: "fonction", widget: "string", hint: "Fonction complète (ex. : Maire, adjoint à la voirie)." }
+      - { label: "Fonction courte", name: "fonction_courte", widget: "string", hint: "Version abrégée pour les listes (ex. : Maire)." }
+
+  - name: "reglages"
+    label: "Réglages"
+    files:
+      - name: "reglages"
+        label: "Réglages du site"
+        file: "content/reglages.json"
+        format: json
+        fields:
+          - { label: "Nom du site", name: "nom_site", widget: "string", hint: "Affiché dans l'en-tête et le titre des pages." }
+          - { label: "Nombre de promesses", name: "nombre_promesses", widget: "number", value_type: "int", readonly: true, hint: "Non modifiable : le site ne se construit que si ce nombre égale celui des promesses." }
+          - label: "Phrase de constat"
+            name: "constat"
+            widget: "object"
+            hint: "La grande phrase de l'accueil, ex. : « 20 promesses sur 31 ne sont pas engagées. »"
+            fields:
+              - label: "Statuts comptés"
+                name: "statuts"
+                widget: "select"
+                multiple: true
+                hint: "Les statuts additionnés dans le grand chiffre."
+                options:
+{{- statutOptions() | replace("        - {", "                  - {") }}
+              - { label: "Phrase", name: "phrase", widget: "string", hint: "Utiliser {total} pour le nombre de promesses." }
+          - { label: "Engagement de campagne", name: "engagement", widget: "text", hint: "Cité à l'accueil après « Avec vous pour Escalquens » promettait…" }
+          - { label: "Qui sommes-nous", name: "qui_sommes_nous", widget: "text", hint: "Présentation affichée à l'accueil, sous « Qui sommes-nous, comment travaillons-nous »." }
+          - { label: "Contact", name: "contact", widget: "string", hint: "Adresse e-mail de contact." }

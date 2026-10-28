@@ -1,0 +1,3 @@
+{#- Only an e-mail becomes a link: the « [À COMPLÉTER] » placeholder stays plain text until it is filled. -#}
+{%- set contact = radar.reglages.contact -%}
+{%- if "@" in contact %}<a href="mailto:{{ contact }}">{{ contact }}</a>{% else %}{{ contact }}{% endif -%}

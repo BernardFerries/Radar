@@ -1,0 +1,13 @@
+{
+  "thematique": "mobilite",
+  "numero": 1,
+  "intitule": "Aménager des places de parking",
+  "statut": "abandonnee",
+  "chronologie": [
+    {
+      "lieu": "commission",
+      "type": "citation",
+      "texte": "Pas de besoin."
+    }
+  ]
+}

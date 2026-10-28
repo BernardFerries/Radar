@@ -1,0 +1,32 @@
+{
+  "thematique": "logement",
+  "numero": 2,
+  "intitule": "Créer une résidence de services pour séniors",
+  "statut": "en-cours",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget prévu : 2 000 000 €",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-09-18",
+      "lieu": "conseil-municipal",
+      "intervenant": "maire",
+      "type": "citation",
+      "texte": "Le projet avance."
+    },
+    {
+      "date": "2026-07-02",
+      "lieu": "presse",
+      "type": "fait",
+      "texte": "Article de presse."
+    },
+    {
+      "date": "2026-05-01",
+      "lieu": "autre",
+      "type": "fait",
+      "texte": "Réunion publique."
+    }
+  ]
+}

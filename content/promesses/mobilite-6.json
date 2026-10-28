@@ -1,0 +1,20 @@
+{
+  "thematique": "mobilite",
+  "numero": 6,
+  "intitule": "Sécuriser le carrefour de la Cousquille",
+  "statut": "en-cours",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget non chiffré",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-04-27",
+      "lieu": "autre",
+      "intervenant": "mobs",
+      "type": "citation",
+      "texte": "on a demandé au SICOVAL de revoir son étude afin de baisser les coûts."
+    }
+  ]
+}

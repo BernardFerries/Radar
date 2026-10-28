@@ -1,0 +1,27 @@
+{
+  "thematique": "logement",
+  "numero": 2,
+  "intitule": "Créer une résidence de services pour séniors",
+  "statut": "en-cours",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget prévu : 0 € (par vente de terrain à un promoteur ?)",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-04-27",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "citation",
+      "texte": "aujourd'hui, on n'a pas signé de promesse de vente"
+    },
+    {
+      "date": "2026-09-18",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "citation",
+      "texte": "opérateur identifié, afinement et définition du projet avec celui-ci. Dépot du permis de construire prévu avant la fin de l'année"
+    }
+  ]
+}

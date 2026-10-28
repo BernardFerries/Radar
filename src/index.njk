@@ -1,0 +1,56 @@
+---
+permalink: /
+---
+{% extends "layouts/base.njk" %}
+{% block title %}{{ radar.reglages.nom_site }} · {{ radar.constat.nombre }} {{ radar.constat.phrase }}{% endblock %}
+{% block content %}
+<div class="accueil">
+  <section class="hero">
+    <div class="kicker">Mandat 2026-2032 · état au {{ radar.etatAu | isoDate | dateFr }}</div>
+    <h1 class="constat"><span class="big">{{ radar.constat.nombre }}</span> <span class="constat-phrase">{{ radar.constat.phrase }}</span></h1>
+    {% set repartition = radar.repartition %}{% set taille = "grande" %}{% include "partials/barre.njk" %}
+    <ul class="legende">
+      {% for r in radar.repartition %}{% if r.count %}
+      <li class="statut-{{ r.statut.key or 'a-venir' }}"><i aria-hidden="true"></i>{{ r.statut.label }} · {{ r.count }}</li>
+      {% endif %}{% endfor %}
+    </ul>
+    <p class="engagement">En 2026, la liste « Avec vous pour Escalquens » promettait « {{ radar.reglages.engagement }} ». Nous suivons chacune de ses {{ radar.total }} promesses, preuves à l'appui.</p>
+  </section>
+
+  <section id="thematiques">
+    <h2>Par thématique</h2>
+    <div class="cartes">
+      {% for t in radar.thematiques %}
+      <a class="carte" href="{{ t.url }}">
+        <b>{{ t.nom }}</b>
+        {% set repartition = t.repartition %}{% set taille = "mini" %}{% include "partials/barre.njk" %}
+        <span class="compte">{% include "partials/compte-thematique.njk" %}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h2>Ce qui a bougé récemment</h2>
+    <ol class="feed">
+      {% for e in radar.recents %}
+      <li>
+        <time datetime="{{ e.date }}">{{ e.date | dateFr }}</time>
+        <span class="feed-texte"><a href="{{ e.promesse.url }}">{{ e | eventSummary(120) }}</a>
+          {%- if e.type == "citation" %}
+          {%- if e.intervenantObj %} <span class="feed-auteur">— {{ e.intervenantObj.nom }}, <abbr title="{{ e.intervenantObj.fonction }}">{{ e.intervenantObj.fonction_courte }}</abbr></span>
+          {%- elif e.lieu != "autre" %} <span class="feed-auteur">— {{ e.lieuLabel }}</span>
+          {%- endif %}
+          {%- endif %}</span>
+        <span class="tag">{{ e.promesse.thematiqueObj.nom }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="about">
+    <h2>Qui sommes-nous, comment travaillons-nous</h2>
+    <p>{{ radar.reglages.qui_sommes_nous }} <a href="/la-demarche/">En savoir plus sur la démarche →</a></p>
+  </section>
+</div>
+{% endblock %}

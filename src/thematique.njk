@@ -1,0 +1,28 @@
+---
+pagination:
+  data: radar.thematiques
+  size: 1
+  alias: t
+permalink: "thematiques/{{ t.slug }}/"
+---
+{% extends "layouts/base.njk" %}
+{% block title %}{{ t.nom }} · {{ radar.reglages.nom_site }}{% endblock %}
+{% block ogtitle %}{{ t.nom }} · {{ radar.reglages.nom_site }}{% endblock %}
+{% block content %}
+<div class="liste">
+  <p class="crumb"><a href="/">Accueil</a> › <a href="/#thematiques">Thématiques</a> › {{ t.nom }}</p>
+  <h1>{{ t.nom }}</h1>
+  {% set repartition = t.repartition %}{% set taille = "mini" %}{% include "partials/barre.njk" %}
+  <ul class="legende">
+    {% for r in t.repartition %}{% if r.count %}
+    <li class="statut-{{ r.statut.key or 'a-venir' }}"><i aria-hidden="true"></i>{{ r.statut.label }} : {{ r.count }}</li>
+    {% endif %}{% endfor %}
+  </ul>
+
+  {% if t.point_de_vue and t.point_de_vue.texte %}{% set pdv = t.point_de_vue %}{% set pdvHtml = pdv.texte | renderContent("md") %}{% include "partials/point-de-vue.njk" %}{% endif %}
+
+  <div class="groupe">
+    {% for p in t.promesses %}{% include "partials/ligne-promesse.njk" %}{% endfor %}
+  </div>
+</div>
+{% endblock %}

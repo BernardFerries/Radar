@@ -1,0 +1,12 @@
+---
+permalink: 404.html
+---
+{% extends "layouts/base.njk" %}
+{% block title %}Page introuvable · {{ radar.reglages.nom_site }}{% endblock %}
+{% block content %}
+<article class="page-texte">
+  <h1>Page introuvable</h1>
+  <p>Cette page n'existe pas, ou elle a changé d'adresse.</p>
+  <p><a href="/">Retour à l'accueil</a></p>
+</article>
+{% endblock %}

@@ -1,0 +1,62 @@
+---
+pagination:
+  data: radar.promesses
+  size: 1
+  alias: p
+permalink: "promesses/{{ p.slug }}/"
+---
+{% extends "layouts/base.njk" %}
+{% block title %}{{ p.intitule }} · {{ radar.reglages.nom_site }}{% endblock %}
+{% block ogtitle %}{{ p.intitule }}{% endblock %}
+{% block ogdesc %}{{ p.statut.label | shareDescription(p.resume, p.statut.key == 'non-engagee') }}{% endblock %}
+{% block content %}
+<article class="fiche">
+  <header class="fiche-tete">
+    <p class="crumb"><a href="/">Accueil</a> › <a href="{{ '/thematiques/' + p.thematiqueObj.slug + '/' }}">{{ p.thematiqueObj.nom }}</a> › Promesse n°{{ p.rang }} sur {{ p.totalThematique }}</p>
+    <h1>{{ p.intitule }}</h1>
+    {% set statut = p.statut %}{% include "partials/statut-badge.njk" %}
+    <p class="meta">
+      {% if p.source %}Source de la promesse : {{ p.source }}{% endif %}
+      {% if p.source and p.derniereEvolution %} · {% endif %}
+      {% if p.derniereEvolution %}Dernière évolution le {{ p.derniereEvolution | dateFr }}{% endif %}
+    </p>
+  </header>
+
+  <div class="fiche-cols">
+    <section class="chrono">
+      <h2>Chronologie</h2>
+      {% if p.chronologie.length %}
+      <div class="tl">{% for ev in p.chronologie %}{% include "partials/evenement.njk" %}{% endfor %}</div>
+      {% elif p.statut.key == "non-engagee" %}
+      <p>Aucun acte concret constaté au {{ radar.etatAu | isoDate | dateFr }}.</p>
+      {% else %}
+      <p>Aucun événement enregistré.</p>
+      {% endif %}
+    </section>
+
+    <aside class="fiche-cote">
+      {% if p.point_de_vue and p.point_de_vue.texte %}{% set pdv = p.point_de_vue %}{% set pdvHtml = pdv.texte | renderContent("md") %}{% include "partials/point-de-vue.njk" %}{% endif %}
+      {% if p.planning_budget %}
+      <div class="side-box"><h2>Planning &amp; budget prévus</h2>
+        {% if p.planning_budget.resume %}<p>{{ p.planning_budget.resume }}</p>{% endif %}
+        {% if p.planning_budget.lien %}<p><a href="{{ p.planning_budget.lien }}">Voir le document planning &amp; budgets →</a></p>{% endif %}
+      </div>
+      {% endif %}
+      {% if p.totalThematique > 1 %}
+      <div class="side-box"><h2>Dans la même thématique</h2>
+        <ul class="meme-theme">
+        {% for t in radar.thematiques %}{% if t.slug == p.thematiqueObj.slug %}{% for q in t.promesses %}{% if q.slug != p.slug %}
+          <li><a href="{{ q.url }}">{{ q.intitule }}</a> {% set statut = q.statut %}{% include "partials/statut-badge.njk" %}</li>
+        {% endif %}{% endfor %}{% endif %}{% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
+
+  <nav class="pn" aria-label="Promesses voisines">
+    {% if p.precedente %}<a href="{{ p.precedente.url }}">← {{ p.precedente.thematiqueObj.nom }} n°{{ p.precedente.rang }}</a>{% else %}<span></span>{% endif %}
+    {% if p.suivante %}<a href="{{ p.suivante.url }}">{{ p.suivante.thematiqueObj.nom }} n°{{ p.suivante.rang }} →</a>{% endif %}
+  </nav>
+</article>
+{% endblock %}

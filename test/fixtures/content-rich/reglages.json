@@ -1,0 +1,13 @@
+{
+  "nom_site": "Radar Escalquens",
+  "nombre_promesses": 6,
+  "constat": {
+    "statuts": [
+      "non-engagee"
+    ],
+    "phrase": "promesses sur {total} ne sont pas engagées."
+  },
+  "engagement": "Texte d'engagement.",
+  "qui_sommes_nous": "Texte qui sommes-nous.",
+  "contact": "contact@example.org"
+}

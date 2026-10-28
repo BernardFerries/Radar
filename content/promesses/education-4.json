@@ -1,0 +1,25 @@
+{
+  "thematique": "education",
+  "numero": 4,
+  "intitule": "Rénovation lourde de la piscine Tournesol",
+  "statut": "non-engagee",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget prévu : 2 000 000 €",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "lieu": "autre",
+      "type": "fait",
+      "texte": "En attente de la signature de la convention par la commune de Labège actant la reprise de la piscine par St Orens\nLes travaux d'entretien restent à la charge des communes - montant pour Escalquens : 144 058€ (une rénovation lourde n'a pas été évoquée)."
+    },
+    {
+      "date": "2026-06-26",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "citation",
+      "texte": "il y a urgence à regulariser la situation. J'espère que la clarification de la position de Labège interviendra rapidement"
+    }
+  ]
+}

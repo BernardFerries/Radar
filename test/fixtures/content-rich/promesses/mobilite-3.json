@@ -1,0 +1,20 @@
+{
+  "thematique": "mobilite",
+  "numero": 3,
+  "intitule": "Étendre le réseau de bus",
+  "statut": "en-cours",
+  "chronologie": [
+    {
+      "date": "2026-08-15",
+      "lieu": "commission",
+      "type": "citation",
+      "texte": "Le dossier est à l'étude."
+    },
+    {
+      "date": "2026-08-01",
+      "lieu": "presse",
+      "type": "fait",
+      "texte": "Étude lancée."
+    }
+  ]
+}

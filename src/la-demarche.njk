@@ -1,0 +1,48 @@
+---
+permalink: /la-demarche/
+---
+{% extends "layouts/base.njk" %}
+{% block title %}La démarche · {{ radar.reglages.nom_site }}{% endblock %}
+{% block content %}
+<article class="page-texte">
+  <h1>La démarche</h1>
+  <p>Lors de la campagne électorale de 2026, la liste « Avec vous pour Escalquens » s'était engagée sur « {{ radar.reglages.engagement }} ».</p>
+  <p>À partir de divers documents dont la profession de foi de cette liste, nous avons identifié trente et une promesses. Tout au long de la mandature, nous informerons les habitant(e)s d'Escalquens sur les actions menées et sur la façon dont les promesses se concrétisent.</p>
+  <p>Notre démarche s'inspire de celle de <a href="https://www.mediacites.fr/" target="_blank" rel="noopener">Mediacités</a> qui, avec son outil Radar, suit les promesses de campagne des municipalités de <a href="https://www.mediacites.fr/radar/toulouse/promesses/" target="_blank" rel="noopener">Toulouse</a>, Nantes, Lille et Lyon.</p>
+  <p>Pour chaque promesse, à partir de notre connaissance des projets et des retours des quatre conseillers municipaux de « Nouveau Cap », nous tenons à jour un état des actions menées et formulons chaque fois que nécessaire notre point de vue.</p>
+  <p>En complément du suivi des promesses, nous vous informons sur <a href="/documents/plannings-et-budgets.pdf" target="_blank" rel="noopener">le planning et le budget prévus</a> pour chaque action d'envergure et en particulier pour la Plaine des sports, la Maison senior et le Centre ville.</p>
+
+  {#- Proposed wording, to be validated by Nouveau Cap. -#}
+  <h2>Notre méthode</h2>
+  <p>Chaque fiche promesse présente une chronologie, de l'événement le plus récent au plus ancien. Elle contient deux types d'entrées : des citations et des faits.</p>
+  <dl class="methode">
+    <dt>Citation</dt>
+    <dd>Les mots d'une personne, reproduits mot pour mot entre guillemets, avec la date, le lieu et le nom de la personne lorsqu'ils sont connus.</dd>
+    <dt>Fait</dt>
+    <dd>Un événement que nous rapportons, par exemple un vote en conseil municipal ou un marché public.</dd>
+    <dt>Point de vue de Nouveau Cap</dt>
+    <dd>Notre opinion. Il est signé « Nouveau Cap » et affiché dans un encadré sombre, à part des citations et des faits.</dd>
+    <dt>Statut</dt>
+    <dd>Nous attribuons à chaque promesse l'un des sept statuts définis ci-dessous, à partir des citations et des faits recueillis. « Non engagée » signifie qu'aucun acte concret n'a été constaté à la date de mise à jour.</dd>
+    <dt>Statut à venir</dt>
+    <dd>La promesse n'a pas encore été évaluée. Elle est comptée à part dans les barres et les légendes.</dd>
+    <dt>date non précisée</dt>
+    <dd>La date de l'événement n'est pas connue. L'événement est placé en fin de chronologie et n'apparaît pas dans « Ce qui a bougé récemment ».</dd>
+  </dl>
+
+  <h2>Les statuts</h2>
+  <dl class="statuts-def">
+    {% for s in catalogue.statuts %}
+    <dt class="statut-{{ s.key }}"><i aria-hidden="true"></i>{{ s.label }}</dt>
+    <dd>{{ s.definition }}</dd>
+    {% endfor %}
+  </dl>
+
+  <h2>Les personnes citées</h2>
+  <ul>
+    {% for i in radar.intervenants %}
+    <li><strong>{{ i.nom }}</strong>, {{ i.fonction }}</li>
+    {% endfor %}
+  </ul>
+</article>
+{% endblock %}

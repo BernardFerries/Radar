@@ -1,0 +1,3 @@
+<div class="barre barre-{{ taille or 'grande' }}" role="img" aria-label="{% for r in repartition %}{% if r.count %}{{ r.statut.label }} : {{ r.count }}. {% endif %}{% endfor %}">
+  {% for r in repartition %}{% if r.count %}<span class="statut-{{ r.statut.key or 'a-venir' }}" style="flex-grow: {{ r.count }}" title="{{ r.statut.label }} : {{ r.count }}"></span>{% endif %}{% endfor %}
+</div>

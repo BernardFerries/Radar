@@ -1,0 +1,10 @@
+<div class="ev ev-{{ ev.type }}">
+  <div class="ev-meta">
+    {#- « Autre » tells the reader nothing, so it is left out. #}
+    <b>{% if ev.date %}{{ ev.date | dateFr }}{% else %}date non précisée{% endif %}</b>{% if ev.lieu != "autre" %} · {{ ev.lieuLabel }}{% endif %}
+    {%- if ev.intervenantObj %} · {{ ev.intervenantObj.nom }}, <abbr title="{{ ev.intervenantObj.fonction }}">{{ ev.intervenantObj.fonction_courte }}</abbr>{% endif %}
+  </div>
+  {% if ev.type == "citation" %}<blockquote class="ev-texte">« {{ ev.texte }} »</blockquote>
+  {% else %}<div class="ev-texte fait">{{ ev.texte }}</div>{% endif %}
+  {% if ev.lien %}<a class="ev-lien" href="{{ ev.lien }}">Source</a>{% endif %}
+</div>

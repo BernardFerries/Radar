@@ -1,0 +1,20 @@
+{
+  "thematique": "urbanisme",
+  "numero": 1,
+  "intitule": "Accompagner l'arrivée du métro avec le Pôle multimodal (parkings, covoiturage,…)",
+  "statut": "non-engagee",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget prévu : 2 000 000 €",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-04-27",
+      "lieu": "autre",
+      "intervenant": "mobs",
+      "type": "citation",
+      "texte": "chronologie financière :\n1) création de la plaine des sports,\n2) dégagement des terrains de foot et tennis du centre ville, fonds pour autres projets\n3) création du pole multimodal"
+    }
+  ]
+}

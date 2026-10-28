@@ -1,0 +1,27 @@
+{
+  "thematique": "urbanisme",
+  "numero": 2,
+  "intitule": "Créer des installations à la plaine des sports (2 terrains de foot, courts de tennis,…)",
+  "statut": "non-engagee",
+  "source": "Profession de foi 2026",
+  "planning_budget": {
+    "resume": "Budget prévu : 5 000 000 €",
+    "lien": "/documents/plannings-et-budgets.pdf"
+  },
+  "chronologie": [
+    {
+      "date": "2026-04-10",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "citation",
+      "texte": "en cours de discussion pour acquérir le foncier. Si pas d'entente, procédure d'expropriation"
+    },
+    {
+      "date": "2026-09-18",
+      "lieu": "autre",
+      "intervenant": "jlt",
+      "type": "fait",
+      "texte": "- avant fin septembre, désignation d'un AMO afin de rédiger l'appel d'offres\n- en ce qui concerne le foncier, discussion sur une possible expropriation."
+    }
+  ]
+}

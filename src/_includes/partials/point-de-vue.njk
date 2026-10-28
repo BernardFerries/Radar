@@ -1,0 +1,6 @@
+{# pdvHtml is rendered by the page: an async filter inside an include renders empty in Nunjucks. #}
+<div class="pv">
+  <div class="kicker">Le point de vue de Nouveau Cap</div>
+  <div class="pv-texte">{{ pdvHtml | safe }}</div>
+  <div class="pv-sign">Nouveau Cap{% if pdv.date %} · {{ pdv.date | dateFr }}{% endif %}</div>
+</div>

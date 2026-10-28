@@ -1,0 +1,13 @@
+{
+  "nom_site": "Radar Escalquens",
+  "nombre_promesses": 31,
+  "constat": {
+    "statuts": [
+      "non-engagee"
+    ],
+    "phrase": "promesses sur {total} ne sont pas engagées."
+  },
+  "engagement": "un projet concret, réaliste et sans augmentation d'impôts",
+  "qui_sommes_nous": "Nouveau Cap compte quatre conseillers municipaux d'opposition. Notre méthode s'inspire du Radar de Mediacités : pour chaque promesse, nous rassemblons les déclarations et les actes de la majorité (conseils municipaux, commissions, marchés publics), datés lorsque la date est connue. Nos commentaires sont signés et séparés des faits.",
+  "contact": "[À COMPLÉTER]"
+}
