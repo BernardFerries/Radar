@@ -13,8 +13,14 @@ test("backend comes from infra.json", async () => {
   assert.ok(yml, "config.yml built");
   assert.ok(yml.includes(`repo: "${infra.github_repo}"`));
   assert.ok(yml.includes(`branch: "${infra.branche}"`));
-  assert.ok(yml.includes(`base_url: "${infra.auth_url}"`));
   assert.match(yml, /publish_mode: simple/);
+});
+
+// Sveltia refuses a non-URL base_url; without one, editors can still sign in with a GitHub token.
+test("base_url is emitted only once auth_url is an absolute URL", async () => {
+  const yml = await config();
+  if (/^https?:\/\//.test(infra.auth_url)) assert.ok(yml.includes(`base_url: "${infra.auth_url}"`));
+  else assert.doesNotMatch(yml, /base_url/);
 });
 
 test("promesses cannot be created or deleted from the CMS", async () => {

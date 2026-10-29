@@ -27,7 +27,10 @@ backend:
   name: github
   repo: {{ q(infra.github_repo) }}
   branch: {{ q(infra.branche) }}
+{#- Sveltia rejects a non-URL base_url (the « [À COMPLÉTER] » placeholder breaks /admin/); without it, token sign-in still works. #}
+{%- if r/^https?:\/\//.test(infra.auth_url) %}
   base_url: {{ q(infra.auth_url) }}
+{%- endif %}
 
 publish_mode: simple
 media_folder: "src/assets/uploads"
